@@ -104,7 +104,7 @@ class ControlPanel(gtk.Window):
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                 gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
                 "Mysqld database server started")
-                os.system("xmessage \"nguk\"")
+                os.system("mysqld_safe --user=root &")
 		dialog.run()
 		dialog.destroy()
 		 
@@ -115,6 +115,7 @@ class ControlPanel(gtk.Window):
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                 gtk.MESSAGE_WARNING, gtk.BUTTONS_OK,
                 "Mysqld database  server stoped")
+                os.system("killall mysqld")
 		dialog.run()
 		dialog.destroy()
 			
@@ -125,6 +126,8 @@ class ControlPanel(gtk.Window):
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                 gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
                 "Mysqld database  server restarted")
+                os.system("killall mysqld")
+                os.system("mysqld_safe --user=root &")
 		dialog.run()
 		dialog.destroy()    
         
