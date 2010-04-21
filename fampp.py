@@ -72,7 +72,7 @@ class ControlPanel(gtk.Window):
                 "Apache http server started")
                 
 		dialog.run()
-                os.system("apachectl -k stop")
+                os.system("/usr/local/sbin/httpd -k start")
 		dialog.destroy()
 		 
 	
@@ -83,7 +83,7 @@ class ControlPanel(gtk.Window):
                 gtk.MESSAGE_WARNING, gtk.BUTTONS_OK,
                 "Apache http server stoped")
                 dialog.run()               
-                os.system("apachectl -k stop")
+                os.system("killall httpd")
                 dialog.destroy()
 			
 	
@@ -93,6 +93,9 @@ class ControlPanel(gtk.Window):
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                 gtk.MESSAGE_INFO, gtk.BUTTONS_OK,
                 "Apache http server restarted")
+                os.system("killall httpd")
+                os.system("/usr/local/sbin/httpd -k start")
+                
 		dialog.run()
 		dialog.destroy()
         
